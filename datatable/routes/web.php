@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DatatableController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -13,4 +14,6 @@ Route::get('auth/dashboard',[AuthController::class, 'dashboard'])->name('dashboa
 
 Route::get('auth/login',[AuthController::class, 'getLogin'])->name('auth.login');
 Route::post('auth/post/login',[AuthController::class, 'postLogin'])->name('auth.postlogin');
+
+Route::get('users', [DatatableController::class, 'getUsers'])->name('get.users');
 

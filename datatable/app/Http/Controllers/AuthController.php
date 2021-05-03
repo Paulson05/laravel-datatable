@@ -16,8 +16,8 @@ class AuthController extends Controller
     }
 
    public function postSignUp(Request $request){
-        
-   
+
+
     $array=collect($request->only(['name','email']))->put('password',bcrypt($request->password))->all();
     User::create($array);
        return redirect()->back()->with('success', 'successfull register');
@@ -27,7 +27,7 @@ class AuthController extends Controller
     }
 
     public function postLogin(Request $request){
-             
+
         if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))){
 
             return redirect()->back()->with('info', 'could not sign you in with those details');
@@ -36,15 +36,15 @@ class AuthController extends Controller
 
         return redirect()->route('dashboard')
             ->with('info', 'you are successfully signed in!');
-        
-        
-        
+
+
+
     }
 
        public function dashboard(){
-           $users = User::all();
+
            return view ('dashboard')->with([
-               'users' => $users
+
            ]);
        }
 }
